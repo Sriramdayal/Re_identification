@@ -48,7 +48,9 @@ pip install torchreid
 ```python
 !git clone https://github.com/KaiyangZhou/deep-person-reid.git
 %cd deep-person-reid
-!pip install -e .
+!pip install -r requirements.txt
+!python setup.py install
+%cd /content
 ```
 
 ---
@@ -56,7 +58,7 @@ pip install torchreid
 ## 🚀 Setup & Execution (Colab)
 
 1. **Upload your video to `/content/`**  
-   Example: `tacticam.mp4`
+   Example: `your_input_video.mp4`
 
 2. **Run the Notebook** step by step:
    - Extract player crops per frame using YOLO
