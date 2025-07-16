@@ -98,7 +98,7 @@ Players are matched using:
 
 ## 📽️ Sample Output
 
-![Output](https://i.imgur.com/xBcdP0H.gif)
+![Output](https://drive.google.com/file/d/1tjCwz1O76C6Qjh_pFAePdyQm2dR5gtvV/view?usp=sharing)
 
 ---
 
