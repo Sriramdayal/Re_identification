@@ -98,7 +98,7 @@ Players are matched using:
 
 ## 📽️ Sample Output
 
-![Output](https://drive.google.com/file/d/1tjCwz1O76C6Qjh_pFAePdyQm2dR5gtvV/view?usp=sharing)
+[https://drive.google.com/file/d/1tjCwz1O76C6Qjh_pFAePdyQm2dR5gtvV/view?usp=sharing]
 
 ---
 
@@ -106,3 +106,4 @@ Players are matched using:
 
 Project by [Sriramdayal]
 Adapted from TorchReID + Ultralytics YOLO
+
