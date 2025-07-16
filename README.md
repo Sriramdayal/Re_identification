@@ -98,6 +98,66 @@ Players are matched using:
 
 ---
 
+
+##  Project Objective
+To detect and re-identify football players from match footage using object detection (YOLOv8), appearance-based embeddings (TorchReID), and jersey number OCR. The pipeline enables consistent tracking and annotation of players across frames, even with occlusions or partial visibility.
+
+---
+
+##  Approach: Step-by-Step
+
+### 1.  Data Preparation
+- Import video footage from Kaggle or Google Drive.
+- Extract frames and crop individual player detections.
+
+### 2.  Player Detection using YOLOv8
+- Load YOLOv8 model (`yolov8n.pt`) using Ultralytics.
+- Detect player bounding boxes in each frame (class `person`).
+- Save each detected region as a cropped image.
+
+### 3.  Jersey Number Recognition (OCR)
+- Apply Tesseract OCR on each crop.
+- Extract jersey numbers as rough player IDs.
+- Store mapping of crop path → OCR text.
+
+### 4. Appearance Embedding using TorchReID
+- Load pretrained model `osnet_x1_0` from TorchReID.
+- Extract 2048-dimensional feature vectors for each player crop.
+- Store crop path → appearance embedding.
+
+### 5.  Hybrid Matching Logic
+- If a valid jersey number is detected (e.g., 7, 10), assign player ID as `jersey_7`, etc.
+- If OCR fails or is uncertain:
+  - Use cosine similarity with known embeddings.
+  - Assign the closest match (if above threshold), else assign a temporary ID (`temp_0`, `temp_1`, ...).
+
+### 6.  Annotated Video Generation
+- Overlay bounding boxes and player IDs on original frames.
+- Output a new video with consistent player annotations using OpenCV.
+
+### 7. Optional: Embedding Classification
+- Train a lightweight classifier (e.g., SVM or MLP) on embeddings to learn player identities for unseen frames.
+
+---
+
+## 🛠️ Technologies Used
+- YOLOv8 (Ultralytics)
+- TorchReID
+- PyTorch
+- OpenCV
+- Tesseract OCR
+- Scikit-learn (cosine similarity)
+
+---
+
+## ✅ Output
+- Annotated MP4 video with real-time player labels.
+- JSON or CSV results mapping crops to player IDs.
+
+---
+
+
+
 ## 📽️ Sample Output
 
 [https://drive.google.com/file/d/1tjCwz1O76C6Qjh_pFAePdyQm2dR5gtvV/view?usp=sharing]
