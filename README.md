@@ -5,20 +5,7 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 ---
 
-## 📁 Project Structure
 
-```
-.
-├── Re-id.ipynb              # Main Colab notebook
-├── crops/                   # Extracted player crops per frame
-├── annotated_crops/         # Crops annotated with predicted IDs
-├── reid_output.mp4          # Final annotated output video
-├── reid_results.json        # Player ID assignments (OCR + appearance)
-├── data.pkl                 # Optional: pretrained model checkpoint or data embeddings
-├── README.md                # This file
-```
-
----
 
 ## ✅ Features
 
