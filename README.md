@@ -5,8 +5,6 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 ---
 
-
-
 ## ✅ Features
 
 - 🧠 Player detection using **YOLOv8**
@@ -17,138 +15,76 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 ---
 
-## 🔧 Requirements
+## 🔧 Installation & Setup
 
-Install the following:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Sriramdayal/Re_identification.git
+    cd Re_identification
+    ```
 
-```bash
-pip install ultralytics
-pip install torch torchvision torchaudio
-pip install opencv-python
-pip install scikit-learn
-pip install pytesseract
-pip install torchreid
+2.  **Set up the environment:**
+    This project uses `uv` for dependency management, but standard pip works too.
+    ```bash
+    # Create and activate virtual environment
+    python3 -m venv .venv
+    source .venv/bin/activate
+
+    # Install dependencies
+    pip install -r requirements.txt
+    
+    # Install the project in editable mode
+    pip install -e .
+    ```
+
+    *Note: The `deep-person-reid` library is vendored in this repository to ensure compatibility and ease of setup.*
+
+---
+
+## � Usage
+
+1.  **Prepare Input Video:**
+    Place your input video in `data/input.mp4` (or update `configs/default.yaml`).
+
+2.  **Run the Pipeline:**
+    ```bash
+    python3 scripts/run_pipeline.py
+    ```
+
+3.  **View Output:**
+    The annotated video will be saved to `outputs/reid_output.mp4`.
+
+---
+
+## 📂 Project Structure
+
 ```
-
-⚠️ If using **Google Colab**, run this to install `torchreid`:
-
-```python
-!git clone https://github.com/KaiyangZhou/deep-person-reid.git
-%cd deep-person-reid
-!pip install -r requirements.txt
-!python setup.py install
-%cd /content
+├── configs/               # Configuration files (YAML)
+├── data/                  # Input data (videos)
+├── deep-person-reid/      # Vendored TorchReID library
+├── outputs/               # Generated results
+├── scripts/               # Entry point scripts
+│   └── run_pipeline.py    # Main pipeline script
+├── src/
+│   └── player_reid/       # Core package code
+│       ├── detectors/     # YOLO detector
+│       ├── embeddings/    # Appearance embeddings
+│       ├── ocr/           # Jersey number OCR
+│       ├── reid/          # Matching logic
+│       └── video/         # Video processing utils
+├── requirements.txt       # Python dependencies
+└── setup.py               # Package installation
 ```
-
----
-
-## 🚀 Setup & Execution (Colab)
-
-1. **Upload your video to `/content/`**  
-   Example: `your_input_video.mp4`
-
-2. **Run the Notebook** step by step:
-   - Extract player crops per frame using YOLO
-   - Perform OCR on each crop
-   - Extract embeddings using TorchReID
-   - Match OCR and embeddings
-   - Annotate and export the final video
-
----
-
-## 📚 Modules & Libraries Imported
-
-- `torch`, `torchvision` — model loading, tensor operations
-- `ultralytics` — YOLOv8 detection
-- `opencv-python (cv2)` — image & video processing
-- `pytesseract` — OCR for jersey numbers
-- `sklearn.metrics.pairwise` — cosine similarity
-- `torchreid` — feature extractor for appearance embeddings
-- `matplotlib`, `json`, `glob`, `os`, `shutil` — utilities
-
----
-
-## 📈 Hybrid Re-Identification
-
-Players are matched using:
-1. **OCR match:** If the jersey number is clear
-2. **Appearance match:** Cosine similarity of embeddings
-3. **Fallback:** Temporary IDs assigned if no good match found
-
----
-
-## 📝 Notes
-
-- Works best on high-resolution videos with visible jersey numbers.
-- OSNet model is pretrained on ImageNet and optimized for re-ID tasks.
-- `.pkl` checkpoints can optionally store embeddings or models.
-
----
-
-
-##  Project Objective
-To detect and re-identify football players from match footage using object detection (YOLOv8), appearance-based embeddings (TorchReID), and jersey number OCR. The pipeline enables consistent tracking and annotation of players across frames, even with occlusions or partial visibility.
-
----
-
-##  Approach: Step-by-Step
-
-### 1.  Data Preparation
-- Import video footage from Kaggle or Google Drive.
-- Extract frames and crop individual player detections.
-
-### 2.  Player Detection using YOLOv8
-- Load YOLOv8 model (`yolov8n.pt`) using Ultralytics.
-- Detect player bounding boxes in each frame (class `person`).
-- Save each detected region as a cropped image.
-
-### 3.  Jersey Number Recognition (OCR)
-- Apply Tesseract OCR on each crop.
-- Extract jersey numbers as rough player IDs.
-- Store mapping of crop path → OCR text.
-
-### 4. Appearance Embedding using TorchReID
-- Load pretrained model `osnet_x1_0` from TorchReID.
-- Extract 2048-dimensional feature vectors for each player crop.
-- Store crop path → appearance embedding.
-
-### 5.  Hybrid Matching Logic
-- If a valid jersey number is detected (e.g., 7, 10), assign player ID as `jersey_7`, etc.
-- If OCR fails or is uncertain:
-  - Use cosine similarity with known embeddings.
-  - Assign the closest match (if above threshold), else assign a temporary ID (`temp_0`, `temp_1`, ...).
-
-### 6.  Annotated Video Generation
-- Overlay bounding boxes and player IDs on original frames.
-- Output a new video with consistent player annotations using OpenCV.
-
-### 7. Optional: Embedding Classification
-- Train a lightweight classifier (e.g., SVM or MLP) on embeddings to learn player identities for unseen frames.
 
 ---
 
 ## 🛠️ Technologies Used
 - YOLOv8 (Ultralytics)
-- TorchReID
+- TorchReID (OSNet)
 - PyTorch
 - OpenCV
 - Tesseract OCR
-- Scikit-learn (cosine similarity)
-
----
-
-## ✅ Output
-- Annotated MP4 video with real-time player labels.
-- JSON or CSV results mapping crops to player IDs.
-
----
-
-
-
-## 📽️ Sample Output
-
-[https://drive.google.com/file/d/1tjCwz1O76C6Qjh_pFAePdyQm2dR5gtvV/view?usp=sharing]
-colab notebook code reference:[https://colab.research.google.com/drive/1iZdCQRScsk52uUKledcjIfLdthugoxqP?usp=sharing]
+- Scikit-learn
 
 ---
 
