@@ -94,8 +94,15 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 ---
 
-## 👨‍💻 Author
+## � Acknowledgments & Credits
 
-Project by [Sriramdayal]
-Adapted from TorchReID + Ultralytics YOLO
+- **[Deep Person ReID (TorchReID)](https://github.com/KaiyangZhou/deep-person-reid)**: Appearance feature extraction library.
+- **[Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)**: State-of-the-art object detection.
+
+---
+
+## �👨‍💻 Author
+
+Project by **[Sriramdayal]**
+Adapted from [TorchReID](https://github.com/KaiyangZhou/deep-person-reid) + [Ultralytics YOLO](https://github.com/ultralytics/ultralytics)
 
