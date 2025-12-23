@@ -46,7 +46,7 @@ This project performs **person detection, jersey number OCR, and appearance-base
 ## � Usage
 
 1.  **Prepare Input Video:**
-    Place your input video in `data/input.mp4` (or update `configs/default.yaml`).
+    Place your input video in `inputs/input.mp4` (or update `configs/default.yaml`).
 
 2.  **Run the Pipeline:**
     ```bash
@@ -66,7 +66,7 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 ```
 ├── configs/               # Configuration files (YAML)
-├── data/                  # Input data (videos)
+├── inputs/                # Input data (videos)
 ├── deep-person-reid/      # Vendored TorchReID library
 ├── outputs/               # Generated results
 ├── scripts/               # Entry point scripts

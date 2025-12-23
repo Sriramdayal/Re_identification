@@ -30,8 +30,8 @@ outputs/*
 !outputs/.gitkeep
 *.pt
 *.pth
-data/*
-!data/.gitkeep
+inputs/*
+!inputs/.gitkeep
 
 # IDEs
 .idea/

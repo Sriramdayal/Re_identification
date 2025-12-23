@@ -1,5 +1,5 @@
 video:
-  input: data/input.mp4
+  input: inputs/input.mp4
   output: outputs/reid_output.mp4
 
 detector:
