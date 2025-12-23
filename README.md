@@ -7,11 +7,12 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 ## ✅ Features
 
-- 🧠 Player detection using **YOLOv8**
-- 🔢 OCR for jersey number extraction using `pytesseract`
-- 🔁 Appearance feature extraction using **OSNet (TorchReID)**
-- 🤝 Re-identification by hybrid matching: **OCR + Cosine Similarity**
-- 📼 Video annotation with player bounding boxes and predicted IDs
+- 🤖 **Multi-Agent Architecture**: Modular system with specialized agents for Vision, Tracking, OCR, and ReID.
+- 🧠 **Vision Agent**: Player detection using **YOLOv8** with smart cropping and quality checks.
+- 🕵️ **Tracking Agent**: Robust object persistence using **ByteTrack**.
+- 🔢 **OCR Agent**: Jersey number extraction with **Temporal Pattern Voting** for stability.
+- 🆔 **ReID Agent**: Hybrid identity resolution using **OCR + Appearance Features (OSNet)** with EMA embeddings.
+- 📼 **Systems Agent**: Orchestrated pipeline for seamless video processing and annotation.
 
 ---
 
@@ -75,8 +76,10 @@ This project performs **person detection, jersey number OCR, and appearance-base
 │   └── player_reid/       # Core package code
 │       ├── detectors/     # YOLO detector
 │       ├── embeddings/    # Appearance embeddings
-│       ├── ocr/           # Jersey number OCR
-│       ├── reid/          # Matching logic
+│       ├── ocr/           # Jersey OCR & Temporal Voting
+│       ├── reid/          # Matching logic & ID Manager
+│       ├── tracking/      # ByteTrack integration
+│       ├── vision/        # Vision utils (Cropping, QC)
 │       └── video/         # Video processing utils
 ├── requirements.txt       # Python dependencies
 └── setup.py               # Package installation
@@ -86,6 +89,7 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 ## 🛠️ Technologies Used
 - YOLOv8 (Ultralytics)
+- ByteTrack (Tracking)
 - TorchReID (OSNet)
 - PyTorch
 - OpenCV
