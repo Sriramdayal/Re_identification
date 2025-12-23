@@ -26,15 +26,17 @@ This project performs **person detection, jersey number OCR, and appearance-base
 2.  **Set up the environment:**
     This project uses `uv` for dependency management, but standard pip works too.
     ```bash
-    # Create and activate virtual environment
-    python3 -m venv .venv
+    # Create virtual environment
+    uv venv
+
+    # Activate virtual environment
     source .venv/bin/activate
 
     # Install dependencies
-    pip install -r requirements.txt
+    uv pip install -r requirements.txt
     
     # Install the project in editable mode
-    pip install -e .
+    uv pip install -e .
     ```
 
     *Note: The `deep-person-reid` library is vendored in this repository to ensure compatibility and ease of setup.*
@@ -48,7 +50,11 @@ This project performs **person detection, jersey number OCR, and appearance-base
 
 2.  **Run the Pipeline:**
     ```bash
-    python3 scripts/run_pipeline.py
+    # Run using the activated environment
+    python scripts/run_pipeline.py
+    
+    # OR run directly with uv
+    uv run python scripts/run_pipeline.py
     ```
 
 3.  **View Output:**
