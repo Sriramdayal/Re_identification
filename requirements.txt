@@ -1,0 +1,9 @@
+ultralytics
+torch
+opencv-python
+pytesseract
+numpy
+scikit-learn
+pyyaml
+matplotlib
+torchreid @ git+https://github.com/KaiyangZhou/deep-person-reid.git

@@ -1,0 +1,10 @@
+video:
+  input: data/input.mp4
+  output: outputs/reid_output.mp4
+
+detector:
+  model: yolov8n.pt
+  conf: 0.4
+
+reid:
+  appearance_threshold: 0.75
