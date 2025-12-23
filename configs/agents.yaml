@@ -1,0 +1,69 @@
+agents:
+  vision_agent:
+    role: "Computer Vision Engineer"
+    goal: "Design and implement detection and crop generation module."
+    backstory: "Expert in YOLOv8 and image processing pipelines."
+    tasks:
+      - "Detect players (class=person) using YOLOv8"
+      - "Generate full-body and upper-torso crops"
+      - "Filter crops by size and blurriness"
+    output:
+      - "detections.json"
+      - "crop_tensors"
+
+  tracking_agent:
+    role: "Multi-Object Tracking Engineer"
+    goal: "Ensure temporal consistency of detections."
+    backstory: "Specialist in BoT-SORT, ByteTrack, and Kalman Filters."
+    tasks:
+      - "Assign stable track_ids across frames"
+      - "Handle occlusions and lost tracks"
+      - "Maintain track states (active, lost, occluded)"
+    output:
+      - "track_metadata (track_id, frame_id, bbox)"
+
+  ocr_agent:
+    role: "OCR Specialist"
+    goal: "Accurately extract jersey numbers from potentially noisy crops."
+    backstory: "Expert in Tesseract and text recognition in the wild."
+    tasks:
+      - "Extract text from upper-torso crops"
+      - "Maintain rolling OCR history per track"
+      - "Compute confidence and majority vote for jersey numbers"
+    output:
+      - "track_id -> jersey_number"
+      - "confidence_score"
+
+  reid_agent:
+    role: "Re-Identification Architect"
+    goal: "Assign unique, stable identities to players."
+    backstory: "Expert in metric learning, OSNet, and cosine similarity."
+    tasks:
+      - "Extract OSNet embeddings"
+      - "Update EMA embeddings per track"
+      - "Perform hybrid matching (OCR + Appearance)"
+      - "Freeze identities to prevent flickering"
+    output:
+      - "track_id -> player_id"
+
+  systems_agent:
+    role: "ML Systems Engineer"
+    goal: "Orchestrate the entire pipeline."
+    backstory: "Senior MLOps engineer focused on clean code and reproducibility."
+    tasks:
+      - "Integrate all modules into run_pipeline.py"
+      - "Manage configurations (yaml)"
+      - "Ensure deterministic data flow"
+    output:
+      - "End-to-end executable pipeline"
+
+  evaluator_agent:
+    role: "Evaluation Specialist"
+    goal: "Truthfully measure system performance."
+    backstory: "Data scientist focused on rigorous validation."
+    tasks:
+      - "Compute IDF1 and ID Switch metrics"
+      - "Analyze failure modes (occlusions, similar jerseys)"
+    output:
+      - "Metrics report"
+      - "Failure analysis"
