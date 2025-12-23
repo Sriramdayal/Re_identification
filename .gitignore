@@ -26,10 +26,12 @@ wheels/
 *.egg
 
 # Data and Models
-outputs/
+outputs/*
+!outputs/.gitkeep
 *.pt
 *.pth
-data/
+data/*
+!data/.gitkeep
 
 # IDEs
 .idea/
